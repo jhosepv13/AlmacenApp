@@ -27,12 +27,12 @@ public interface ApiService {
     Call<List<Producto>> getProductos();
 
     @FormUrlEncoded
-    @POST("/api/v1/productos")
+    @POST("/v1/productos")
     Call<ResponseMessage> createProducto(@Field("nombre") String nombre,
                                          @Field("precio") String precio,
                                          @Field("detalles") String detalles);
     @Multipart
-    @POST("/api/v1/productos")
+    @POST("/v1/productos")
     Call<ResponseMessage> createProductoWithImage(
             @Part("nombre") RequestBody nombre,
             @Part("precio") RequestBody precio,
@@ -40,10 +40,10 @@ public interface ApiService {
             @Part MultipartBody.Part imagen
     );
 
-    @DELETE("/api/v1/productos/{id}")
+    @DELETE("/v1/productos/{id}")
     Call<ResponseMessage> destroyProducto(@Path("id") Integer id);
 
-    @GET("api/v1/productos/{id}")
+    @GET("/v1/productos/{id}")
     Call<Producto> showProducto(@Path("id") Integer id);
 
 
