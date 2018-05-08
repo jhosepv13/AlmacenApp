@@ -43,5 +43,9 @@ public interface ApiService {
     @DELETE("/api/v1/productos/{id}")
     Call<ResponseMessage> destroyProducto(@Path("id") Integer id);
 
+    @GET("api/v1/productos/{id}")
+    Call<Producto> showProducto(@Path("id") Integer id);
+
+
 
 }

@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         productosList = (RecyclerView) findViewById(R.id.recyclerview);
         productosList.setLayoutManager(new LinearLayoutManager(this));
 
-        productosList.setAdapter(new ProductosAdapter());
+        productosList.setAdapter(new ProductosAdapter(this));
 
         initialize();
 

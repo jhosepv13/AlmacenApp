@@ -1,5 +1,7 @@
 package pe.bazan.jhosep.com.almacenapp.Adapters;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,6 +19,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import pe.bazan.jhosep.com.almacenapp.Activities.DetailActivity;
 import pe.bazan.jhosep.com.almacenapp.Models.Producto;
 import pe.bazan.jhosep.com.almacenapp.Models.ResponseMessage;
 import pe.bazan.jhosep.com.almacenapp.R;
@@ -36,8 +39,11 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.View
 
     private List<Producto> productos;
 
-    public ProductosAdapter(){
+    private Activity activity;
+
+    public ProductosAdapter(Activity activity){
         this.productos = new ArrayList<>();
+        this.activity = activity;
     }
 
     public void setProductos(List<Producto> productos){
@@ -76,6 +82,16 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.View
 
         String url = ApiService.API_BASE_URL + "/images/" + producto.getImagen();
         Picasso.with(viewHolder.itemView.getContext()).load(url).into(viewHolder.fotoImage);
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, DetailActivity.class);
+                intent.putExtra("ID", producto.getId());
+                activity.startActivity(intent);
+            }
+        });
+
 
         viewHolder.menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
